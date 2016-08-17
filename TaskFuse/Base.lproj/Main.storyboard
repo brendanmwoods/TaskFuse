@@ -61,24 +61,67 @@
             </objects>
             <point key="canvasLocation" x="1036" y="159"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Create Task Table View Controller-->
         <scene sceneID="uAN-7T-kvE">
             <objects>
-                <tableViewController id="XpN-Qa-1fx" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="isN-e7-sio">
+                <tableViewController id="XpN-Qa-1fx" customClass="CreateTaskTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="isN-e7-sio">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WoM-Kx-pgk">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskTitleCell" id="WoM-Kx-pgk" customClass="TaskTitleTableViewCell">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WoM-Kx-pgk" id="Oo0-9O-dNe">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxt-Pt-ooc">
+                                            <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="QEb-VF-oG5"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Hxt-Pt-ooc" firstAttribute="trailing" secondItem="Oo0-9O-dNe" secondAttribute="trailingMargin" id="4zN-14-Unu"/>
+                                        <constraint firstItem="Hxt-Pt-ooc" firstAttribute="leading" secondItem="Oo0-9O-dNe" secondAttribute="leadingMargin" id="5th-dM-WT2"/>
+                                        <constraint firstItem="Hxt-Pt-ooc" firstAttribute="centerY" secondItem="Oo0-9O-dNe" secondAttribute="centerY" id="otC-uz-vhN"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskTitleTextField" destination="Hxt-Pt-ooc" id="XU8-7O-ur2"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskSubmitCell" id="E9O-sF-OmV" customClass="TaskSubmitTableViewCell">
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E9O-sF-OmV" id="Uci-cq-UXC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJK-wF-UKb">
+                                            <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.75978839399999998" blue="0.0002325893001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" title="Submit">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="submitTaskButtonTouched:" destination="E9O-sF-OmV" eventType="touchUpInside" id="F5u-fO-FUx"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskSubmitButton" destination="dJK-wF-UKb" id="HEw-0w-k1Q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="XpN-Qa-1fx" id="Ab9-Ae-o4r"/>
                             <outlet property="delegate" destination="XpN-Qa-1fx" id="FX8-HN-6mL"/>
@@ -87,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzx-yr-Sjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="159"/>
+            <point key="canvasLocation" x="1665" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KC9-Xi-oq6">

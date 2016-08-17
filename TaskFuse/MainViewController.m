@@ -67,10 +67,6 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    return @"End";
-}
 
 /*
 #pragma mark - Navigation
