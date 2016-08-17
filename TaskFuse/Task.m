@@ -11,13 +11,22 @@
 @interface Task()
 
 #pragma mark - Properties
-@property (nonatomic, strong) NSString *taskTitle;
+
 
 @end
 
 @implementation Task
-
-#pragma mark - Private
+#pragma mark - Public
+- (instancetype)initWithTitle:(NSString *)taskTitle
+{
+    self = [super init];
+    
+    if(self)
+    {
+        _taskTitle = taskTitle;
+    }
+    return self;
+}
 
 - (NSString *)taskTitle
 {
@@ -27,5 +36,9 @@
     }
     return _taskTitle;
 }
+
+#pragma mark - Private
+
+
 
 @end

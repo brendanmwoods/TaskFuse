@@ -27,13 +27,13 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYh-q1-Nhd">
                                 <rect key="frame" x="20" y="458" width="560" height="70"/>
-                                <color key="backgroundColor" red="0.59971257833565561" green="0.58040574094935438" blue="0.63965830176767668" alpha="0.26282728040540543" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.75978839399999998" blue="0.0002325893001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="eIE-V8-6g0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="New Task">
-                                    <color key="titleColor" red="0.0" green="0.75978839399999998" blue="0.0002325893001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="XpN-Qa-1fx" kind="show" id="B5X-9H-1cq"/>
@@ -55,6 +55,7 @@
                     <navigationItem key="navigationItem" title="Tasks" id="qgR-4k-MLK"/>
                     <connections>
                         <outlet property="createTaskButton" destination="QYh-q1-Nhd" id="rDy-vf-Vg9"/>
+                        <outlet property="tasksTableView" destination="crh-Ao-hN7" id="rUw-xU-4BQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXQ-2O-30P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,7 +69,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="isN-e7-sio">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskTitleCell" id="WoM-Kx-pgk" customClass="TaskTitleTableViewCell">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
@@ -77,12 +78,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxt-Pt-ooc">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text Title" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxt-Pt-ooc">
                                             <rect key="frame" x="8" y="7" width="584" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="QEb-VF-oG5"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textField>
                                     </subviews>
@@ -103,18 +104,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJK-wF-UKb">
-                                            <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJK-wF-UKb">
+                                            <rect key="frame" x="8" y="8" width="584" height="27"/>
                                             <color key="backgroundColor" red="0.0" green="0.75978839399999998" blue="0.0002325893001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" title="Submit">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="submitTaskButtonTouched:" destination="E9O-sF-OmV" eventType="touchUpInside" id="F5u-fO-FUx"/>
+                                                <action selector="submitTaskButtonPressed:" destination="XpN-Qa-1fx" eventType="touchUpInside" id="8dx-ZN-Hl8"/>
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dJK-wF-UKb" firstAttribute="trailing" secondItem="Uci-cq-UXC" secondAttribute="trailingMargin" id="FXh-31-WE6"/>
+                                        <constraint firstItem="dJK-wF-UKb" firstAttribute="leading" secondItem="Uci-cq-UXC" secondAttribute="leadingMargin" id="VFY-Mu-MbI"/>
+                                        <constraint firstItem="dJK-wF-UKb" firstAttribute="top" secondItem="Uci-cq-UXC" secondAttribute="topMargin" id="jU7-Uj-Guh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dJK-wF-UKb" secondAttribute="bottom" id="vVe-cG-Yhy"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="taskSubmitButton" destination="dJK-wF-UKb" id="HEw-0w-k1Q"/>
@@ -130,7 +137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzx-yr-Sjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="159"/>
+            <point key="canvasLocation" x="1756" y="159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KC9-Xi-oq6">

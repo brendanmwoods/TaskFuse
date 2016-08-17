@@ -10,4 +10,6 @@
 
 @interface TaskTitleTableViewCell : UITableViewCell
 
+@property (strong, nonatomic)NSString *title;
+
 @end

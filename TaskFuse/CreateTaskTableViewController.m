@@ -7,14 +7,28 @@
 //
 
 #import "CreateTaskTableViewController.h"
+#import "TaskTitleTableViewCell.h"
+#import "TaskManager.h"
 
-@interface CreateTaskTableViewController ()
+
+static int const TITLE_SECTION = 0;
+static int const TITLE_ROW = 0;
+static int const SUBMIT_BUTTON_SECTION = 1;
+static int const SUBMIT_BUTTON_ROW = 1;
+
+@interface CreateTaskTableViewController()
+
+#pragma mark - Properties
+@property (strong,nonatomic) NSString *taskTitle;
 
 @end
 
 @implementation CreateTaskTableViewController
 
-- (void)viewDidLoad {
+
+#pragma mark - Lifecycle
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -22,17 +36,36 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.title = @"New Task";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - IBActions
+- (IBAction)submitTaskButtonPressed:(UIButton *)sender
+{
+    NSLog(@"Create Task Button Pushed");
+    TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
+    
+    //get the cell with the title
+    
+    [sharedTaskManager addTaskWithTitle:[self taskTitle]];
+}
+
+#pragma mark - Public
+
+#pragma mark - Private
+
+- (NSString *)taskTitle
+{
+    NSIndexPath *titlePath = [NSIndexPath indexPathForRow:TITLE_ROW inSection:TITLE_SECTION];
+    TaskTitleTableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titlePath];
+    return titleCell.title;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -42,24 +75,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     
-    switch (indexPath.row) {
-        case 0:
+    switch (indexPath.section) {
+        case TITLE_SECTION:
             cell = [tableView dequeueReusableCellWithIdentifier:@"taskTitleCell" forIndexPath:indexPath];
             break;
-        case 1:
-            cell = [tableView dequeueReusableCellWithIdentifier:@"taskTitleCell" forIndexPath:indexPath];
+        case SUBMIT_BUTTON_SECTION:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"taskSubmitCell" forIndexPath:indexPath];
         default:
             break;
     }
-    
-    // Configure the cell...
     
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (section == TITLE_SECTION)
     {
         return @"Task Title";
     }
@@ -69,6 +100,8 @@
         return @"";
     }
 }
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

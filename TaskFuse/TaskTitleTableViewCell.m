@@ -19,7 +19,7 @@
 
 @implementation TaskTitleTableViewCell
 
-
+#pragma mark - Lifecycle
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -31,4 +31,9 @@
     // Configure the view for the selected state
 }
 
+#pragma mark - public
+- (NSString *)title
+{
+    return self.taskTitleTextField.text;
+}
 @end

@@ -10,5 +10,8 @@
 
 @interface Task : NSObject
 
+@property (nonatomic, strong) NSString *taskTitle;
+
+- (instancetype)initWithTitle:(NSString *)taskTitle;
 
 @end

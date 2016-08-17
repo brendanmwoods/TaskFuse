@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "Task.h"
+#import "TaskManager.h"
 
 @interface MainViewController ()
 
@@ -16,21 +17,24 @@
 #pragma mark - IBOutlets
 
 @property (weak, nonatomic) IBOutlet UIButton *createTaskButton;
+@property (weak, nonatomic) IBOutlet UITableView *tasksTableView;
 
 @end
 
 @implementation MainViewController
 
 #pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.tasksTableView reloadData];
 }
+
 #pragma mark - IBActions
 
 #pragma mark - Public
@@ -46,13 +50,17 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
+    return [sharedTaskManager.tasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TaskManager *sharedManager = [TaskManager sharedTaskManager];
     UITableViewCell *cell = [[UITableViewCell alloc]init];
-    cell.textLabel.text = [NSString stringWithFormat:@"Task %d", indexPath.row];
+    Task *task = (Task *)[sharedManager tasks][indexPath.row];
+    //set table view title to the task label
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",task.taskTitle];
     return cell;
 }
 
