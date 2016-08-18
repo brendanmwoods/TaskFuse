@@ -56,11 +56,12 @@
                     <connections>
                         <outlet property="createTaskButton" destination="QYh-q1-Nhd" id="rDy-vf-Vg9"/>
                         <outlet property="tasksTableView" destination="crh-Ao-hN7" id="rUw-xU-4BQ"/>
+                        <segue destination="ngh-tZ-0Ob" kind="show" identifier="taskDetailsSegue" id="lbz-FV-ER0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXQ-2O-30P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="159"/>
+            <point key="canvasLocation" x="964" y="159"/>
         </scene>
         <!--Create Task Table View Controller-->
         <scene sceneID="uAN-7T-kvE">
@@ -78,7 +79,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Text Title" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxt-Pt-ooc">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxt-Pt-ooc">
                                             <rect key="frame" x="8" y="7" width="584" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="QEb-VF-oG5"/>
@@ -137,7 +138,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzx-yr-Sjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="159"/>
+            <point key="canvasLocation" x="1680" y="587"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KC9-Xi-oq6">
@@ -156,6 +157,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFH-k4-E07" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="282" y="159"/>
+        </scene>
+        <!--Detail Task Table View Controller-->
+        <scene sceneID="cWc-ks-ydi">
+            <objects>
+                <tableViewController id="ngh-tZ-0Ob" customClass="DetailTaskTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="f1d-xc-efP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailTaskTitleCell" id="vvp-ms-VQh" customClass="DetailTaskTitleTableViewCell">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvp-ms-VQh" id="GJT-5R-tA8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN6-cY-ieK">
+                                            <rect key="frame" x="8" y="8" width="584" height="27"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="JN6-cY-ieK" firstAttribute="trailing" secondItem="GJT-5R-tA8" secondAttribute="trailingMargin" id="h8r-DC-oRO"/>
+                                        <constraint firstItem="JN6-cY-ieK" firstAttribute="top" secondItem="GJT-5R-tA8" secondAttribute="topMargin" id="rlm-aS-Yyp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="JN6-cY-ieK" secondAttribute="bottom" id="v0V-Lj-w24"/>
+                                        <constraint firstItem="JN6-cY-ieK" firstAttribute="leading" secondItem="GJT-5R-tA8" secondAttribute="leadingMargin" id="z9Y-HF-kew"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="JN6-cY-ieK" id="7O7-zl-z8l"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="ngh-tZ-0Ob" id="3MH-hx-WUj"/>
+                            <outlet property="delegate" destination="ngh-tZ-0Ob" id="KLv-ok-ur7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ykO-Ly-nlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="-103"/>
         </scene>
     </scenes>
 </document>

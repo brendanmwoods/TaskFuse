@@ -9,8 +9,12 @@
 #import "MainViewController.h"
 #import "Task.h"
 #import "TaskManager.h"
+#import "UIKit/UIKit.h"
+#import <CoreData/CoreData.h>
+#import "DetailTaskTableViewController.h"
 
 @interface MainViewController ()
+
 
 #pragma mark - Properties
 
@@ -41,6 +45,18 @@
 
 #pragma mark - Private
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSIndexPath *)sender {
+    if ([segue.identifier  isEqual: @"taskDetailsSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[DetailTaskTableViewController class]])
+        {
+            DetailTaskTableViewController *destinationVC = segue.destinationViewController;
+            TaskManager *sharedManager = [TaskManager sharedTaskManager];
+            destinationVC.task = [sharedManager savedTasks][sender.row];
+            NSLog(@"sending %@", [sharedManager savedTasks][sender.row]);
+        }
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (int)numberOfSectionsInTableView:(UITableView *)tableView
@@ -51,16 +67,17 @@
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
-    return [sharedTaskManager.tasks count];
+    return [sharedTaskManager.savedTasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskManager *sharedManager = [TaskManager sharedTaskManager];
     UITableViewCell *cell = [[UITableViewCell alloc]init];
-    Task *task = (Task *)[sharedManager tasks][indexPath.row];
+    NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
+    
     //set table view title to the task label
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",task.taskTitle];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [task valueForKey:@"title"]];
     return cell;
 }
 
@@ -75,15 +92,18 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
 
-/*
-#pragma mark - Navigation
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"touched row %d", indexPath.row);
+    [self performSegueWithIdentifier:@"taskDetailsSegue" sender:indexPath];
+}
+
+
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
 
 @end

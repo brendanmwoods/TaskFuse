@@ -7,20 +7,28 @@
 //
 
 #import "TaskManager.h"
+#import <CoreData/CoreData.h>
+#import "UIKit/UIKit.h"
+
+@interface TaskManager()
+
+@end
 
 @implementation TaskManager
-
 #pragma mark - Properties
-@synthesize tasks = _tasks;
+
+#pragma mark - Lifecycle
 
 #pragma mark - Public
-- (NSMutableArray *)tasks
+
+
+- (NSMutableArray *)savedTasks
 {
-    if(!_tasks)
-    {
-        _tasks = [[NSMutableArray alloc]init];
-    }
-    return _tasks;
+    //return all the saved Tasks from core data
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Task"];
+    _savedTasks = [[context executeFetchRequest:fetchRequest error:nil]mutableCopy];
+    return _savedTasks;
 }
 
 //get the singleton shared task manager
@@ -37,10 +45,50 @@
 
 - (void)addTaskWithTitle:(NSString *)newTaskTitle
 {
-    [self.tasks addObject:[[Task alloc]initWithTitle:newTaskTitle]];
-    NSLog(@"%d", [self.tasks count]);
-    NSLog(@"adding %@",newTaskTitle);
+    //create a new Task, and try to save it to core data
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
+                                                             inManagedObjectContext:context];
+    [newTask setValue:newTaskTitle forKey:@"title"];
+    NSError *error = nil;
     
+    if (![context save:&error])
+    {
+        NSLog(@"cannot save, with error %@ , %@", error,[error localizedDescription]);
+    }
+    
+    else
+    {
+        NSLog(@"should be saved correctly now");
+    }
+}
+
+- (void)deleteTask
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    [context deleteObject:[self.savedTasks objectAtIndex:0]];
+    
+    NSError *error = nil;
+    if (![context save:&error])
+    {
+        NSLog(@"cannot delete. error %@, %@", error, [error localizedDescription]);
+    }
+    
+    else
+    {
+        NSLog(@"should have deleted a Task.");
+    }
+}
+
+#pragma mark - Private
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 @end

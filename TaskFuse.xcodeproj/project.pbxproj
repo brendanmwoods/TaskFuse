@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC01D6D81D652A20006227F8 /* TaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC01D6D61D652A20006227F8 /* TaskModel.xcdatamodeld */; };
+		BC01D71D1D654879006227F8 /* DetailTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC01D71C1D654879006227F8 /* DetailTaskTableViewController.m */; };
+		BC01D7211D655691006227F8 /* DetailTaskTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC01D7201D655691006227F8 /* DetailTaskTitleTableViewCell.m */; };
 		BC9B0D621D6416A80088D8E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D611D6416A80088D8E5 /* main.m */; };
 		BC9B0D651D6416A80088D8E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D641D6416A80088D8E5 /* AppDelegate.m */; };
 		BC9B0D6B1D6416A80088D8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC9B0D691D6416A80088D8E5 /* Main.storyboard */; };
@@ -40,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC01D6D71D652A20006227F8 /* TaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskModel.xcdatamodel; sourceTree = "<group>"; };
+		BC01D71B1D654879006227F8 /* DetailTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTaskTableViewController.h; sourceTree = "<group>"; };
+		BC01D71C1D654879006227F8 /* DetailTaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTaskTableViewController.m; sourceTree = "<group>"; };
+		BC01D71F1D655691006227F8 /* DetailTaskTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTaskTitleTableViewCell.h; sourceTree = "<group>"; };
+		BC01D7201D655691006227F8 /* DetailTaskTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTaskTitleTableViewCell.m; sourceTree = "<group>"; };
 		BC9B0D5D1D6416A80088D8E5 /* TaskFuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskFuse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B0D611D6416A80088D8E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC9B0D631D6416A80088D8E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -93,6 +101,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC01D71E1D654E77006227F8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC9B0D931D641AAE0088D8E5 /* MainViewController.h */,
+				BC9B0D941D641AAE0088D8E5 /* MainViewController.m */,
+				BC01D71B1D654879006227F8 /* DetailTaskTableViewController.h */,
+				BC01D71C1D654879006227F8 /* DetailTaskTableViewController.m */,
+				BC9B0D9C1D6431500088D8E5 /* CreateTaskTableViewController.h */,
+				BC9B0D9D1D6431500088D8E5 /* CreateTaskTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		BC9B0D541D6416A80088D8E5 = {
 			isa = PBXGroup;
 			children = (
@@ -116,17 +137,15 @@
 		BC9B0D5F1D6416A80088D8E5 /* TaskFuse */ = {
 			isa = PBXGroup;
 			children = (
-				BC9B0D631D6416A80088D8E5 /* AppDelegate.h */,
-				BC9B0D641D6416A80088D8E5 /* AppDelegate.m */,
-				BC9B0D931D641AAE0088D8E5 /* MainViewController.h */,
-				BC9B0D941D641AAE0088D8E5 /* MainViewController.m */,
+				BC01D71E1D654E77006227F8 /* Controllers */,
+				BC01D6D61D652A20006227F8 /* TaskModel.xcdatamodeld */,
 				BC9B0D691D6416A80088D8E5 /* Main.storyboard */,
+				BC01D71F1D655691006227F8 /* DetailTaskTitleTableViewCell.h */,
+				BC01D7201D655691006227F8 /* DetailTaskTitleTableViewCell.m */,
 				BC9B0D9F1D64D01C0088D8E5 /* TaskSubmitTableViewCell.h */,
 				BC9B0DA01D64D01C0088D8E5 /* TaskSubmitTableViewCell.m */,
 				BC9B0DA21D64E1D00088D8E5 /* TaskManager.h */,
 				BC9B0DA31D64E1D00088D8E5 /* TaskManager.m */,
-				BC9B0D9C1D6431500088D8E5 /* CreateTaskTableViewController.h */,
-				BC9B0D9D1D6431500088D8E5 /* CreateTaskTableViewController.m */,
 				BC9B0D991D642EBF0088D8E5 /* TaskTitleTableViewCell.h */,
 				BC9B0D9A1D642EBF0088D8E5 /* TaskTitleTableViewCell.m */,
 				BC9B0D961D6426FC0088D8E5 /* Task.h */,
@@ -142,6 +161,8 @@
 		BC9B0D601D6416A80088D8E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC9B0D631D6416A80088D8E5 /* AppDelegate.h */,
+				BC9B0D641D6416A80088D8E5 /* AppDelegate.m */,
 				BC9B0D611D6416A80088D8E5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -296,11 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC9B0DA11D64D01C0088D8E5 /* TaskSubmitTableViewCell.m in Sources */,
+				BC01D7211D655691006227F8 /* DetailTaskTitleTableViewCell.m in Sources */,
 				BC9B0D981D6426FC0088D8E5 /* Task.m in Sources */,
+				BC01D6D81D652A20006227F8 /* TaskModel.xcdatamodeld in Sources */,
 				BC9B0D651D6416A80088D8E5 /* AppDelegate.m in Sources */,
 				BC9B0D9E1D6431500088D8E5 /* CreateTaskTableViewController.m in Sources */,
 				BC9B0D621D6416A80088D8E5 /* main.m in Sources */,
 				BC9B0D951D641AAE0088D8E5 /* MainViewController.m in Sources */,
+				BC01D71D1D654879006227F8 /* DetailTaskTableViewController.m in Sources */,
 				BC9B0DA41D64E1D00088D8E5 /* TaskManager.m in Sources */,
 				BC9B0D9B1D642EBF0088D8E5 /* TaskTitleTableViewCell.m in Sources */,
 			);
@@ -530,6 +554,7 @@
 				BC9B0D8C1D6416A80088D8E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC9B0D8D1D6416A80088D8E5 /* Build configuration list for PBXNativeTarget "TaskFuseTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +563,7 @@
 				BC9B0D8F1D6416A80088D8E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC9B0D901D6416A80088D8E5 /* Build configuration list for PBXNativeTarget "TaskFuseUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,8 +572,22 @@
 				BC9B0D921D6416A80088D8E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC01D6D61D652A20006227F8 /* TaskModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC01D6D71D652A20006227F8 /* TaskModel.xcdatamodel */,
+			);
+			currentVersion = BC01D6D71D652A20006227F8 /* TaskModel.xcdatamodel */;
+			path = TaskModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC9B0D551D6416A80088D8E5 /* Project object */;
 }

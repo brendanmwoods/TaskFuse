@@ -12,10 +12,12 @@
 //A singleton for retrieving and storing tasks.
 @interface TaskManager : NSObject
 
-@property (strong, nonatomic, readonly)NSMutableArray *tasks; //of Task
+
+@property (strong, nonatomic) NSMutableArray *savedTasks;
 
 + (TaskManager *)sharedTaskManager;
 
 - (void)addTaskWithTitle:(NSString *)newTask;
+- (void)deleteTask;
 
 @end
