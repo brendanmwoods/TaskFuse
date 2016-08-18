@@ -16,7 +16,9 @@
 @end
 
 @implementation Task
+
 #pragma mark - Public
+
 - (instancetype)initWithTitle:(NSString *)taskTitle
 {
     self = [super init];
@@ -36,9 +38,5 @@
     }
     return _taskTitle;
 }
-
-#pragma mark - Private
-
-
 
 @end

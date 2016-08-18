@@ -21,7 +21,6 @@
 
 #pragma mark - Public
 
-
 - (NSMutableArray *)savedTasks
 {
     //return all the saved Tasks from core data
@@ -31,8 +30,8 @@
     return _savedTasks;
 }
 
-//get the singleton shared task manager
-+ (TaskManager *)sharedTaskManager
+
++ (TaskManager *)sharedTaskManager //singleton task manager
 {
     static TaskManager *sharedTaskManager = nil;
     
@@ -63,10 +62,10 @@
     }
 }
 
-- (void)deleteTask
+- (void)deleteTask:(NSManagedObject *)task
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-    [context deleteObject:[self.savedTasks objectAtIndex:0]];
+    [context deleteObject:task];
     
     NSError *error = nil;
     if (![context save:&error])
@@ -82,10 +81,12 @@
 
 #pragma mark - Private
 
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *)managedObjectContext
+{
     NSManagedObjectContext *context = nil;
     id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
+    if ([delegate performSelector:@selector(managedObjectContext)])
+    {
         context = [delegate managedObjectContext];
     }
     return context;

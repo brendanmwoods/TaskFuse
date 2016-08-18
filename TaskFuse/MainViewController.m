@@ -52,19 +52,18 @@
             DetailTaskTableViewController *destinationVC = segue.destinationViewController;
             TaskManager *sharedManager = [TaskManager sharedTaskManager];
             destinationVC.task = [sharedManager savedTasks][sender.row];
-            NSLog(@"sending %@", [sharedManager savedTasks][sender.row]);
         }
     }
 }
 
 #pragma mark - UITableViewDataSource
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
     return [sharedTaskManager.savedTasks count];
@@ -76,7 +75,6 @@
     UITableViewCell *cell = [[UITableViewCell alloc]init];
     NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
     
-    //set table view title to the task label
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [task valueForKey:@"title"]];
     return cell;
 }
@@ -96,14 +94,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"touched row %d", indexPath.row);
     [self performSegueWithIdentifier:@"taskDetailsSegue" sender:indexPath];
 }
-
-
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-
 
 
 @end
