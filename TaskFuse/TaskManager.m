@@ -49,6 +49,7 @@
     NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
                                                              inManagedObjectContext:context];
     [newTask setValue:newTaskTitle forKey:@"title"];
+    
     NSError *error = nil;
     
     if (![context save:&error])

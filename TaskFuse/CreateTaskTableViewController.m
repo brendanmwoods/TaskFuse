@@ -9,11 +9,13 @@
 #import "CreateTaskTableViewController.h"
 #import "TaskTitleTableViewCell.h"
 #import "TaskManager.h"
-
+#import "TaskExpiryTableViewCell.h"
+#import "ExpiryDurations.h"
+#import "DateHelper.h"
 
 static int const TITLE_SECTION = 0;
 static int const TITLE_ROW = 0;
-static int const SUBMIT_BUTTON_SECTION = 1;
+static int const SUBMIT_BUTTON_SECTION = 2;
 //static int const SUBMIT_BUTTON_ROW = 1;
 
 @interface CreateTaskTableViewController()
@@ -43,10 +45,23 @@ static int const SUBMIT_BUTTON_SECTION = 1;
 
 - (IBAction)submitTaskButtonPressed:(UIButton *)sender
 {
+    ExpiryDurations duration = Week;
+    
+    NSDate *now = [DateHelper currentDate];
+    NSDate *expiry = [DateHelper expiryFromDate:now afterDuration:duration];
+    NSLog(@"now : %@",now);
+    NSLog(@"one week later : %@",expiry);
+    //create a Task with the current details
+    //Task *task = [[Task alloc]init];
+    
+    
+    
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
     [sharedTaskManager addTaskWithTitle:[self taskTitle]];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+
 
 #pragma mark - Public
 
@@ -59,10 +74,15 @@ static int const SUBMIT_BUTTON_SECTION = 1;
     return titleCell.title;
 }
 
+//- (NSDate *)calculateExpiryDate:(NSDate *)
+//{
+//    return nil;
+//}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -73,10 +93,13 @@ static int const SUBMIT_BUTTON_SECTION = 1;
     UITableViewCell *cell;
     
     switch (indexPath.section) {
-        case TITLE_SECTION:
+        case 0:
             cell = [tableView dequeueReusableCellWithIdentifier:@"taskTitleCell" forIndexPath:indexPath];
             break;
-        case SUBMIT_BUTTON_SECTION:
+        case 1:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"taskExpiryCell" forIndexPath:indexPath];
+            break;
+        case 2:
             cell = [tableView dequeueReusableCellWithIdentifier:@"taskSubmitCell" forIndexPath:indexPath];
         default:
             break;
@@ -92,9 +115,13 @@ static int const SUBMIT_BUTTON_SECTION = 1;
         return @"Task Title";
     }
     
+    if (section == 1)
+    {
+        return @"Task Duration";
+    }
     else
     {
-        return @"";
+        return @"Save";
     }
 }
 

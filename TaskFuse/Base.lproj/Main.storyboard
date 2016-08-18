@@ -98,37 +98,66 @@
                                     <outlet property="taskTitleTextField" destination="Hxt-Pt-ooc" id="XU8-7O-ur2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskSubmitCell" id="E9O-sF-OmV" customClass="TaskSubmitTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskExpiryCell" id="E9O-sF-OmV" customClass="TaskExpiryTableViewCell">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E9O-sF-OmV" id="Uci-cq-UXC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJK-wF-UKb">
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sdA-XY-R3n">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <segments>
+                                                <segment title="Day"/>
+                                                <segment title="Week"/>
+                                                <segment title="Month"/>
+                                                <segment title="Year"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sdA-XY-R3n" secondAttribute="bottom" id="NvD-Jv-UQL"/>
+                                        <constraint firstItem="sdA-XY-R3n" firstAttribute="top" secondItem="Uci-cq-UXC" secondAttribute="topMargin" id="dnJ-cq-8Hu"/>
+                                        <constraint firstItem="sdA-XY-R3n" firstAttribute="leading" secondItem="Uci-cq-UXC" secondAttribute="leadingMargin" id="yNj-YO-WEI"/>
+                                        <constraint firstItem="sdA-XY-R3n" firstAttribute="trailing" secondItem="Uci-cq-UXC" secondAttribute="trailingMargin" id="znO-Nh-FJW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="taskExpirySegmentedControl" destination="sdA-XY-R3n" id="qAO-fm-Afx"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskSubmitCell" id="dSR-YE-kqn" customClass="TaskSubmitTableViewCell">
+                                <rect key="frame" x="0.0" y="202" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dSR-YE-kqn" id="Gkq-my-8ZG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3n-wH-rSW">
                                             <rect key="frame" x="225" y="2" width="150" height="40"/>
                                             <color key="backgroundColor" red="0.0" green="0.75978839399999998" blue="0.0002325893001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="150" id="Nuo-1j-gkG"/>
-                                                <constraint firstAttribute="height" constant="40" id="QYk-9g-vMQ"/>
+                                                <constraint firstAttribute="width" constant="150" id="21R-kz-VvE"/>
+                                                <constraint firstAttribute="height" constant="40" id="Nkc-m5-cpV"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <state key="normal" title="Submit">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="submitTaskButtonPressed:" destination="XpN-Qa-1fx" eventType="touchUpInside" id="8dx-ZN-Hl8"/>
+                                                <action selector="submitTaskButtonPressed:" destination="XpN-Qa-1fx" eventType="touchUpInside" id="1LG-on-rHW"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="dJK-wF-UKb" firstAttribute="centerY" secondItem="Uci-cq-UXC" secondAttribute="centerY" id="9z3-aH-AVL"/>
-                                        <constraint firstItem="dJK-wF-UKb" firstAttribute="centerX" secondItem="Uci-cq-UXC" secondAttribute="centerX" id="kT7-HI-g9A"/>
+                                        <constraint firstItem="r3n-wH-rSW" firstAttribute="centerY" secondItem="Gkq-my-8ZG" secondAttribute="centerY" id="IEv-Qg-1d6"/>
+                                        <constraint firstItem="r3n-wH-rSW" firstAttribute="centerX" secondItem="Gkq-my-8ZG" secondAttribute="centerX" id="zfZ-Hg-2fA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="taskSubmitButton" destination="dJK-wF-UKb" id="HEw-0w-k1Q"/>
+                                    <outlet property="taskSubmitButton" destination="r3n-wH-rSW" id="mSR-9T-iuf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

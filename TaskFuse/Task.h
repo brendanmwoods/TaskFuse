@@ -10,7 +10,9 @@
 
 @interface Task : NSObject
 
-@property (nonatomic, strong) NSString *taskTitle;
+@property (nonatomic, strong)NSString *taskTitle;
+@property (nonatomic, strong)NSDate *startDate;
+@property (nonatomic, strong)NSDate *expiryDate;
 
 - (instancetype)initWithTitle:(NSString *)taskTitle;
 
