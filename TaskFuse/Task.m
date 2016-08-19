@@ -16,14 +16,18 @@
 @end
 
 @implementation Task
+
 #pragma mark - Public
-- (instancetype)initWithTitle:(NSString *)taskTitle
+
+- (instancetype)initWithTitle:(NSString *)taskTitle startDate:(NSDate *)start expiryDate:(NSDate *)expiry
 {
     self = [super init];
     
     if(self)
     {
         _taskTitle = taskTitle;
+        _startDate = start;
+        _expiryDate = expiry;
     }
     return self;
 }
@@ -36,9 +40,5 @@
     }
     return _taskTitle;
 }
-
-#pragma mark - Private
-
-
 
 @end

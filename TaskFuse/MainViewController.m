@@ -9,6 +9,11 @@
 #import "MainViewController.h"
 #import "Task.h"
 #import "TaskManager.h"
+#import "UIKit/UIKit.h"
+#import <CoreData/CoreData.h>
+#import "DetailTaskTableViewController.h"
+#import "MainTaskTableViewCell.h"
+#import "DateHelper.h"
 
 @interface MainViewController ()
 
@@ -41,26 +46,42 @@
 
 #pragma mark - Private
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSIndexPath *)sender {
+    if ([segue.identifier  isEqual: @"taskDetailsSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[DetailTaskTableViewController class]])
+        {
+            DetailTaskTableViewController *destinationVC = segue.destinationViewController;
+            TaskManager *sharedManager = [TaskManager sharedTaskManager];
+            destinationVC.task = [sharedManager savedTasks][sender.row];
+        }
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
-    return [sharedTaskManager.tasks count];
+    return [sharedTaskManager.savedTasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MainTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTaskCell"] ;
+
     TaskManager *sharedManager = [TaskManager sharedTaskManager];
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    Task *task = (Task *)[sharedManager tasks][indexPath.row];
-    //set table view title to the task label
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",task.taskTitle];
+    NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
+    
+    cell.titleLabel.text = [task valueForKey:@"title"];
+    
+    NSDate *date = [task valueForKey:@"expiryDate"];
+
+    cell.expiryLabel.text = [DateHelper formatDate:date];
     return cell;
 }
 
@@ -70,20 +91,18 @@
     {
         return @"Your Tasks";
     }
-    else {
+    
+    else
+    {
         return @"";
     }
 }
 
+#pragma mark - UITableViewDelegate
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"taskDetailsSegue" sender:indexPath];
 }
-*/
 
 @end

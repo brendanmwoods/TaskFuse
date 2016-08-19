@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Task.h"
+#import <CoreData/CoreData.h>
 
 //A singleton for retrieving and storing tasks.
 @interface TaskManager : NSObject
 
-@property (strong, nonatomic, readonly)NSMutableArray *tasks; //of Task
+
+@property (strong, nonatomic) NSMutableArray *savedTasks;
 
 + (TaskManager *)sharedTaskManager;
 
-- (void)addTaskWithTitle:(NSString *)newTask;
+- (void)deleteTask:(NSManagedObject *)task;
+- (void)addTask:(Task *)task;
 
 @end

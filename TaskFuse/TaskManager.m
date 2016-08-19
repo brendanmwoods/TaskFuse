@@ -7,24 +7,32 @@
 //
 
 #import "TaskManager.h"
+#import <CoreData/CoreData.h>
+#import "UIKit/UIKit.h"
+
+static NSString * const TASK_ENTITY_NAME = @"Task";
+
+@interface TaskManager()
+
+@end
 
 @implementation TaskManager
-
 #pragma mark - Properties
-@synthesize tasks = _tasks;
+
+#pragma mark - Lifecycle
 
 #pragma mark - Public
-- (NSMutableArray *)tasks
+
+- (NSMutableArray *)savedTasks
 {
-    if(!_tasks)
-    {
-        _tasks = [[NSMutableArray alloc]init];
-    }
-    return _tasks;
+    //return all the saved Tasks from core data
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:TASK_ENTITY_NAME];
+    _savedTasks = [[context executeFetchRequest:fetchRequest error:nil]mutableCopy];
+    return _savedTasks;
 }
 
-//get the singleton shared task manager
-+ (TaskManager *)sharedTaskManager
++ (TaskManager *)sharedTaskManager //singleton task manager
 {
     static TaskManager *sharedTaskManager = nil;
     
@@ -35,12 +43,57 @@
     return sharedTaskManager;
 }
 
-- (void)addTaskWithTitle:(NSString *)newTaskTitle
+- (void)addTask:(Task *)task
 {
-    [self.tasks addObject:[[Task alloc]initWithTitle:newTaskTitle]];
-    NSLog(@"%d", [self.tasks count]);
-    NSLog(@"adding %@",newTaskTitle);
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:TASK_ENTITY_NAME
+                                                             inManagedObjectContext:context];
     
+    [newTask setValue:task.taskTitle forKey:@"title"];
+    [newTask setValue:task.startDate forKey:@"startDate"];
+    [newTask setValue:task.expiryDate forKey:@"expiryDate"];
+    
+    NSError *error = nil;
+    
+    if (![context save:&error])
+    {
+        NSLog(@"cannot save, with error %@ , %@", error,[error localizedDescription]);
+    }
+    
+    else
+    {
+        NSLog(@"should be saved correctly now");
+    }
+}
+
+- (void)deleteTask:(NSManagedObject *)task
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    [context deleteObject:task];
+    
+    NSError *error = nil;
+    if (![context save:&error])
+    {
+        NSLog(@"cannot delete. error %@, %@", error, [error localizedDescription]);
+    }
+    
+    else
+    {
+        NSLog(@"should have deleted a Task.");
+    }
+}
+
+#pragma mark - Private
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)])
+    {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 @end
