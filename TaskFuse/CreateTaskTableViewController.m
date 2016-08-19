@@ -15,8 +15,10 @@
 
 static int const TITLE_SECTION = 0;
 static int const TITLE_ROW = 0;
+static int const DURATION_SECTION = 1;
+static int const DURATION_ROW = 0;
 static int const SUBMIT_BUTTON_SECTION = 2;
-//static int const SUBMIT_BUTTON_ROW = 1;
+static int const SUBMIT_BUTTON_ROW = 0;
 
 @interface CreateTaskTableViewController()
 
@@ -45,19 +47,27 @@ static int const SUBMIT_BUTTON_SECTION = 2;
 
 - (IBAction)submitTaskButtonPressed:(UIButton *)sender
 {
-    ExpiryDurations duration = Week;
+    
+    NSIndexPath *expiryCellPath = [NSIndexPath indexPathForRow:DURATION_ROW inSection:DURATION_SECTION];
+    TaskExpiryTableViewCell *expiryCell = [self.tableView cellForRowAtIndexPath:expiryCellPath];
+    
+    ExpiryDurations duration = expiryCell.segmentSelected;
     
     NSDate *now = [DateHelper currentDate];
     NSDate *expiry = [DateHelper expiryFromDate:now afterDuration:duration];
+    
     NSLog(@"now : %@",now);
-    NSLog(@"one week later : %@",expiry);
+    NSLog(@"expiry : %@",expiry);
+    
+    
     //create a Task with the current details
-    //Task *task = [[Task alloc]init];
+    Task *task = [[Task alloc]initWithTitle:self.taskTitle startDate:now expiryDate:expiry];
     
     
     
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
-    [sharedTaskManager addTaskWithTitle:[self taskTitle]];
+    //[sharedTaskManager addTaskWithTitle:[self taskTitle]];
+    [sharedTaskManager addTask:task];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -115,13 +125,19 @@ static int const SUBMIT_BUTTON_SECTION = 2;
         return @"Task Title";
     }
     
-    if (section == 1)
+    if (section == DURATION_SECTION)
     {
         return @"Task Duration";
     }
-    else
+    
+    if (section == SUBMIT_BUTTON_SECTION)
     {
         return @"Save";
+    }
+    
+    else
+    {
+        return nil;
     }
 }
 

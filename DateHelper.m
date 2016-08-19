@@ -19,31 +19,36 @@
 {
     NSDate *expiry;
     
-    if (duration == Day)
+    switch (duration)
     {
-        expiry = [now dateByAddingTimeInterval:60 * 60 * 24];
-    }
-    
-    else if (duration == Week)
-    {
-        expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 7];
-    }
-    
-    else if (duration == Month)
-    {
-        expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 30];
-    }
-    else if (duration == Year)
-    {
-        expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 365];
-    }
-    
-    else
-    {
-        return nil;
-        NSLog(@"Incorrect expiry date calculated in DateHelper");
+        case Day:
+            expiry = [now dateByAddingTimeInterval:60 * 60 * 24];
+            break;
+        case Week:
+            expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 7];
+            break;
+        case Month:
+            expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 30];
+            break;
+        case Year:
+            expiry = [now dateByAddingTimeInterval:60 * 60 * 24 * 365];
+            break;
+        default:
+            break;
     }
     return expiry;
+}
+
++ (NSString *)formatDate:(NSDate *)unformatedDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    NSString *prettyDate = [formatter stringFromDate:unformatedDate];
+    NSLog(@"pretty date %@", prettyDate);
+    
+    return prettyDate;
 }
 
 @end

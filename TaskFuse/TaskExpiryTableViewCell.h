@@ -10,4 +10,6 @@
 
 @interface TaskExpiryTableViewCell : UITableViewCell
 
+@property (nonatomic,assign)int segmentSelected;
+
 @end

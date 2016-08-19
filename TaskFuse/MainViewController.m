@@ -12,9 +12,10 @@
 #import "UIKit/UIKit.h"
 #import <CoreData/CoreData.h>
 #import "DetailTaskTableViewController.h"
+#import "MainTaskTableViewCell.h"
+#import "DateHelper.h"
 
 @interface MainViewController ()
-
 
 #pragma mark - Properties
 
@@ -71,11 +72,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    MainTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTaskCell"] ;
+
     TaskManager *sharedManager = [TaskManager sharedTaskManager];
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
     NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [task valueForKey:@"title"]];
+    cell.titleLabel.text = [task valueForKey:@"title"];
+    
+    NSDate *date = [task valueForKey:@"expiryDate"];
+
+    cell.expiryLabel.text = [DateHelper formatDate:date];
     return cell;
 }
 
@@ -85,7 +91,9 @@
     {
         return @"Your Tasks";
     }
-    else {
+    
+    else
+    {
         return @"";
     }
 }
@@ -96,6 +104,5 @@
 {
     [self performSegueWithIdentifier:@"taskDetailsSegue" sender:indexPath];
 }
-
 
 @end

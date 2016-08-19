@@ -18,7 +18,7 @@
 
 + (TaskManager *)sharedTaskManager;
 
-- (void)addTaskWithTitle:(NSString *)newTask;
 - (void)deleteTask:(NSManagedObject *)task;
+- (void)addTask:(Task *)task;
 
 @end

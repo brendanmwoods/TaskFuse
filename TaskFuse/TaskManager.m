@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "UIKit/UIKit.h"
 
+static NSString * const TASK_ENTITY_NAME = @"Task";
+
 @interface TaskManager()
 
 @end
@@ -25,11 +27,10 @@
 {
     //return all the saved Tasks from core data
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Task"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:TASK_ENTITY_NAME];
     _savedTasks = [[context executeFetchRequest:fetchRequest error:nil]mutableCopy];
     return _savedTasks;
 }
-
 
 + (TaskManager *)sharedTaskManager //singleton task manager
 {
@@ -42,13 +43,15 @@
     return sharedTaskManager;
 }
 
-- (void)addTaskWithTitle:(NSString *)newTaskTitle
+- (void)addTask:(Task *)task
 {
-    //create a new Task, and try to save it to core data
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
+    NSManagedObject *newTask = [NSEntityDescription insertNewObjectForEntityForName:TASK_ENTITY_NAME
                                                              inManagedObjectContext:context];
-    [newTask setValue:newTaskTitle forKey:@"title"];
+    
+    [newTask setValue:task.taskTitle forKey:@"title"];
+    [newTask setValue:task.startDate forKey:@"startDate"];
+    [newTask setValue:task.expiryDate forKey:@"expiryDate"];
     
     NSError *error = nil;
     

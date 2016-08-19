@@ -12,6 +12,7 @@
 		BC01D7211D655691006227F8 /* DetailTaskTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC01D7201D655691006227F8 /* DetailTaskTitleTableViewCell.m */; };
 		BC39C9A91D66278B00F29460 /* TaskExpiryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC39C9A81D66278B00F29460 /* TaskExpiryTableViewCell.m */; };
 		BC39C9AE1D663B0000F29460 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC39C9AD1D663B0000F29460 /* DateHelper.m */; };
+		BC39C9B11D6673C700F29460 /* MainTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC39C9B01D6673C700F29460 /* MainTaskTableViewCell.m */; };
 		BC9B0D621D6416A80088D8E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D611D6416A80088D8E5 /* main.m */; };
 		BC9B0D651D6416A80088D8E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D641D6416A80088D8E5 /* AppDelegate.m */; };
 		BC9B0D6B1D6416A80088D8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC9B0D691D6416A80088D8E5 /* Main.storyboard */; };
@@ -55,6 +56,8 @@
 		BC39C9AB1D66360A00F29460 /* ExpiryDurations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpiryDurations.h; sourceTree = "<group>"; };
 		BC39C9AC1D663B0000F29460 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateHelper.h; path = ../DateHelper.h; sourceTree = "<group>"; };
 		BC39C9AD1D663B0000F29460 /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateHelper.m; path = ../DateHelper.m; sourceTree = "<group>"; };
+		BC39C9AF1D6673C700F29460 /* MainTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTaskTableViewCell.h; sourceTree = "<group>"; };
+		BC39C9B01D6673C700F29460 /* MainTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTaskTableViewCell.m; sourceTree = "<group>"; };
 		BC9B0D5D1D6416A80088D8E5 /* TaskFuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskFuse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B0D611D6416A80088D8E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC9B0D631D6416A80088D8E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				BC9B0DA01D64D01C0088D8E5 /* TaskSubmitTableViewCell.m */,
 				BC9B0D991D642EBF0088D8E5 /* TaskTitleTableViewCell.h */,
 				BC9B0D9A1D642EBF0088D8E5 /* TaskTitleTableViewCell.m */,
+				BC39C9AF1D6673C700F29460 /* MainTaskTableViewCell.h */,
+				BC39C9B01D6673C700F29460 /* MainTaskTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -168,8 +173,8 @@
 				BC9B0DA21D64E1D00088D8E5 /* TaskManager.h */,
 				BC9B0DA31D64E1D00088D8E5 /* TaskManager.m */,
 				BC9B0D961D6426FC0088D8E5 /* Task.h */,
-				BC39C9AB1D66360A00F29460 /* ExpiryDurations.h */,
 				BC9B0D971D6426FC0088D8E5 /* Task.m */,
+				BC39C9AB1D66360A00F29460 /* ExpiryDurations.h */,
 				BC9B0D6C1D6416A80088D8E5 /* Assets.xcassets */,
 				BC9B0D6E1D6416A80088D8E5 /* LaunchScreen.storyboard */,
 				BC9B0D711D6416A80088D8E5 /* Info.plist */,
@@ -339,6 +344,7 @@
 				BC9B0DA11D64D01C0088D8E5 /* TaskSubmitTableViewCell.m in Sources */,
 				BC01D7211D655691006227F8 /* DetailTaskTitleTableViewCell.m in Sources */,
 				BC9B0D981D6426FC0088D8E5 /* Task.m in Sources */,
+				BC39C9B11D6673C700F29460 /* MainTaskTableViewCell.m in Sources */,
 				BC01D6D81D652A20006227F8 /* TaskModel.xcdatamodeld in Sources */,
 				BC9B0D651D6416A80088D8E5 /* AppDelegate.m in Sources */,
 				BC9B0D9E1D6431500088D8E5 /* CreateTaskTableViewController.m in Sources */,

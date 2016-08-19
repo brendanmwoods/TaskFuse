@@ -14,6 +14,6 @@
 @property (nonatomic, strong)NSDate *startDate;
 @property (nonatomic, strong)NSDate *expiryDate;
 
-- (instancetype)initWithTitle:(NSString *)taskTitle;
+- (instancetype)initWithTitle:(NSString *)taskTitle startDate:(NSDate *)start expiryDate:(NSDate*)expiry;
 
 @end

@@ -16,5 +16,6 @@
 
 + (NSDate *)expiryFromDate:(NSDate *)now afterDuration:(ExpiryDurations)duration;
 
++ (NSString *)formatDate:(NSDate *)unformatedDate;
 
 @end
