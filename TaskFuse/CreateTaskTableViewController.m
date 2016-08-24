@@ -18,11 +18,12 @@ static int const TITLE_ROW = 0;
 static int const DURATION_SECTION = 1;
 static int const DURATION_ROW = 0;
 static int const SUBMIT_BUTTON_SECTION = 2;
-static int const SUBMIT_BUTTON_ROW = 0;
+// int const SUBMIT_BUTTON_ROW = 0;
 
-@interface CreateTaskTableViewController()
+@interface CreateTaskTableViewController() <UITextFieldDelegate>
 
 #pragma mark - Properties
+
 @property (strong,nonatomic) NSString *taskTitle;
 
 @end
@@ -30,15 +31,10 @@ static int const SUBMIT_BUTTON_ROW = 0;
 @implementation CreateTaskTableViewController
 
 #pragma mark - Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"New Task";
 }
@@ -84,22 +80,22 @@ static int const SUBMIT_BUTTON_ROW = 0;
     return titleCell.title;
 }
 
-//- (NSDate *)calculateExpiryDate:(NSDate *)
-//{
-//    return nil;
-//}
+
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell;
     
     switch (indexPath.section) {
@@ -114,7 +110,6 @@ static int const SUBMIT_BUTTON_ROW = 0;
         default:
             break;
     }
-    
     return cell;
 }
 
@@ -141,5 +136,12 @@ static int const SUBMIT_BUTTON_ROW = 0;
     }
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

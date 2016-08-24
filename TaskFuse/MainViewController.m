@@ -15,7 +15,7 @@
 #import "MainTaskTableViewCell.h"
 #import "DateHelper.h"
 
-@interface MainViewController ()
+@interface MainViewController()
 
 #pragma mark - Properties
 
@@ -73,15 +73,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTaskCell"] ;
-
     TaskManager *sharedManager = [TaskManager sharedTaskManager];
     NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
-    
     cell.titleLabel.text = [task valueForKey:@"title"];
-    
     NSDate *date = [task valueForKey:@"expiryDate"];
-
-    cell.expiryLabel.text = [DateHelper formatDate:date];
+    NSMutableArray *daysHoursMinutesRemaining = [DateHelper calculateCountdownValues:date];
+    cell.daysRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:0]];
+    cell.hoursRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:1]];
+    cell.minutesRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:2]];
+    
+    if ([cell.daysRemainingLabel.text isEqualToString:@"0"])
+    {
+        cell.daysRemainingLabel.hidden = YES;
+        cell.daysLabel.hidden = YES;
+    }
     return cell;
 }
 

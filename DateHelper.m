@@ -51,4 +51,28 @@
     return prettyDate;
 }
 
++ (NSMutableArray *)calculateCountdownValues:(NSDate *)expiry
+{
+    NSTimeInterval secondsRemainingDouble = [expiry timeIntervalSinceNow];
+    
+    int secondsRemaining = secondsRemainingDouble;
+    int daysRemaining = secondsRemaining / (60 * 60 * 24);
+    int daysRemainder = secondsRemaining % (60 * 60 * 24);
+    int hoursRemaining = daysRemainder / (60 * 60);
+    int hoursRemainder = daysRemainder % (60 * 60);
+    int minutesRemaining = hoursRemainder / (60);
+    
+    id daysId = [NSNumber numberWithInt:daysRemaining];
+    id hoursId = [NSNumber numberWithInt:hoursRemaining];
+    id minutesId = [NSNumber numberWithInt:minutesRemaining];
+    
+    NSMutableArray *daysHoursMinutesRemaining = [[NSMutableArray alloc]init];
+    
+    [daysHoursMinutesRemaining addObject:daysId];
+    [daysHoursMinutesRemaining addObject:hoursId];
+    [daysHoursMinutesRemaining addObject:minutesId];
+    
+    return daysHoursMinutesRemaining;
+}
+
 @end

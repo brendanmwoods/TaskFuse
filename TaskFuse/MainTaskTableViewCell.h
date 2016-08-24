@@ -11,9 +11,13 @@
 @interface MainTaskTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *expiryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *daysRemainingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hoursRemainingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minutesRemainingLabel;
 
-
+@property (weak, nonatomic) IBOutlet UILabel *daysLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hoursLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minutesLabel;
 
 
 @end

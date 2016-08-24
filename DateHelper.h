@@ -18,4 +18,6 @@
 
 + (NSString *)formatDate:(NSDate *)unformatedDate;
 
++ (NSMutableArray *)calculateCountdownValues:(NSDate *)expiry;
+
 @end
