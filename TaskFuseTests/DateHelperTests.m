@@ -43,6 +43,12 @@
     [super tearDown];
 }
 
+- (void)testCalculateNegativeCountdownValues
+{
+    NSMutableArray *output = [DateHelper calculateCountdownValues:[NSDate dateWithTimeIntervalSinceNow:-100]];
+    XCTAssertNil(output, @"Negative countdown values failed to return nil");
+}
+
 - (void)testYearExpiryCalculation
 {
     term = Year;

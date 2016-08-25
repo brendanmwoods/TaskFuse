@@ -18,7 +18,6 @@
 		BC9B0D6B1D6416A80088D8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC9B0D691D6416A80088D8E5 /* Main.storyboard */; };
 		BC9B0D6D1D6416A80088D8E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC9B0D6C1D6416A80088D8E5 /* Assets.xcassets */; };
 		BC9B0D701D6416A80088D8E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC9B0D6E1D6416A80088D8E5 /* LaunchScreen.storyboard */; };
-		BC9B0D7B1D6416A80088D8E5 /* TaskFuseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D7A1D6416A80088D8E5 /* TaskFuseTests.m */; };
 		BC9B0D861D6416A80088D8E5 /* TaskFuseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D851D6416A80088D8E5 /* TaskFuseUITests.m */; };
 		BC9B0D951D641AAE0088D8E5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D941D641AAE0088D8E5 /* MainViewController.m */; };
 		BC9B0D981D6426FC0088D8E5 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0D971D6426FC0088D8E5 /* Task.m */; };
@@ -27,6 +26,7 @@
 		BC9B0DA11D64D01C0088D8E5 /* TaskSubmitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0DA01D64D01C0088D8E5 /* TaskSubmitTableViewCell.m */; };
 		BC9B0DA41D64E1D00088D8E5 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B0DA31D64E1D00088D8E5 /* TaskManager.m */; };
 		BCCC86C51D6E5E5D00923C52 /* DateHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC86C41D6E5E5D00923C52 /* DateHelperTests.m */; };
+		BCCC86C71D6E66D800923C52 /* TaskManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC86C61D6E66D800923C52 /* TaskManagerTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 		BC9B0D6F1D6416A80088D8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC9B0D711D6416A80088D8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B0D761D6416A80088D8E5 /* TaskFuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskFuseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC9B0D7A1D6416A80088D8E5 /* TaskFuseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskFuseTests.m; sourceTree = "<group>"; };
 		BC9B0D7C1D6416A80088D8E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B0D811D6416A80088D8E5 /* TaskFuseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskFuseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B0D851D6416A80088D8E5 /* TaskFuseUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskFuseUITests.m; sourceTree = "<group>"; };
@@ -86,6 +85,8 @@
 		BC9B0DA21D64E1D00088D8E5 /* TaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
 		BC9B0DA31D64E1D00088D8E5 /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
 		BCCC86C41D6E5E5D00923C52 /* DateHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelperTests.m; sourceTree = "<group>"; };
+		BCCC86C61D6E66D800923C52 /* TaskManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManagerTest.m; sourceTree = "<group>"; };
+		BCCC86C81D6E79F900923C52 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +182,7 @@
 				BC9B0D6E1D6416A80088D8E5 /* LaunchScreen.storyboard */,
 				BC9B0D711D6416A80088D8E5 /* Info.plist */,
 				BC9B0D601D6416A80088D8E5 /* Supporting Files */,
+				BCCC86C81D6E79F900923C52 /* Constants.h */,
 			);
 			path = TaskFuse;
 			sourceTree = "<group>";
@@ -198,8 +200,8 @@
 		BC9B0D791D6416A80088D8E5 /* TaskFuseTests */ = {
 			isa = PBXGroup;
 			children = (
+				BCCC86C61D6E66D800923C52 /* TaskManagerTest.m */,
 				BCCC86C41D6E5E5D00923C52 /* DateHelperTests.m */,
-				BC9B0D7A1D6416A80088D8E5 /* TaskFuseTests.m */,
 				BC9B0D7C1D6416A80088D8E5 /* Info.plist */,
 			);
 			path = TaskFuseTests;
@@ -365,7 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC9B0D7B1D6416A80088D8E5 /* TaskFuseTests.m in Sources */,
+				BCCC86C71D6E66D800923C52 /* TaskManagerTest.m in Sources */,
 				BCCC86C51D6E5E5D00923C52 /* DateHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

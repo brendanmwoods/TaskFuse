@@ -14,6 +14,7 @@
 #import "DetailTaskTableViewController.h"
 #import "MainTaskTableViewCell.h"
 #import "DateHelper.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MainViewController()
 
@@ -27,12 +28,18 @@
 @end
 
 @implementation MainViewController
-
+{
+    TaskManager *sharedManager;
+}
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sharedManager = [TaskManager sharedTaskManager];
+    [self startUIUpdatingTimer];
+    [self styleCreateTaskButton];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,10 +58,31 @@
         if ([segue.destinationViewController isKindOfClass:[DetailTaskTableViewController class]])
         {
             DetailTaskTableViewController *destinationVC = segue.destinationViewController;
-            TaskManager *sharedManager = [TaskManager sharedTaskManager];
             destinationVC.task = [sharedManager savedTasks][sender.row];
         }
     }
+}
+
+- (void)startUIUpdatingTimer
+{
+    NSTimer *updateUITimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                              target:self
+                                                            selector:@selector(updateGui)
+                                                            userInfo:nil
+                                                             repeats:YES];
+}
+
+- (void)styleCreateTaskButton
+{
+    [[self.createTaskButton layer] setBorderWidth:0.5];
+    [[self.createTaskButton layer] setBorderColor:[[UIColor greenColor]CGColor]];
+    [[self.createTaskButton layer] setCornerRadius:5];
+}
+
+- (void)updateGui
+{
+    [self.tasksTableView reloadData];
+    NSLog(@"updating UI");
 }
 
 #pragma mark - UITableViewDataSource
@@ -66,18 +94,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
-    return [sharedTaskManager.savedTasks count];
+    return [sharedManager.savedTasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainTaskCell"] ;
-    TaskManager *sharedManager = [TaskManager sharedTaskManager];
     NSManagedObject *task = [sharedManager savedTasks][indexPath.row];
     cell.titleLabel.text = [task valueForKey:@"title"];
     NSDate *date = [task valueForKey:@"expiryDate"];
     NSMutableArray *daysHoursMinutesRemaining = [DateHelper calculateCountdownValues:date];
+    
+    if (daysHoursMinutesRemaining == nil)
+    {
+        cell.titleLabel.textColor = [UIColor redColor];
+        cell.daysRemainingLabel.hidden = YES;
+        cell.hoursRemainingLabel.hidden = YES;
+        cell.minutesRemainingLabel.hidden = YES;
+        cell.daysLabel.hidden = YES;
+        cell.hoursLabel.hidden = YES;
+        cell.minutesLabel.hidden = YES;
+        return cell;
+    }
     cell.daysRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:0]];
     cell.hoursRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:1]];
     cell.minutesRemainingLabel.text = [NSString stringWithFormat:@"%@",[daysHoursMinutesRemaining objectAtIndex:2]];
@@ -86,6 +124,12 @@
     {
         cell.daysRemainingLabel.hidden = YES;
         cell.daysLabel.hidden = YES;
+        if([cell.hoursRemainingLabel.text isEqualToString:@"0"])
+        {
+            cell.hoursRemainingLabel.hidden = YES;
+            cell.hoursLabel.hidden = YES;
+        }
+        
     }
     return cell;
 }
