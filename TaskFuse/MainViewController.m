@@ -15,6 +15,8 @@
 #import "MainTaskTableViewCell.h"
 #import "DateHelper.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DetailTaskViewController.h"
+#import "Constants.h"
 
 @interface MainViewController()
 
@@ -44,6 +46,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:YES];
     [self.tasksTableView reloadData];
 }
 
@@ -55,7 +58,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSIndexPath *)sender {
     if ([segue.identifier  isEqual: @"taskDetailsSegue"]) {
-        if ([segue.destinationViewController isKindOfClass:[DetailTaskTableViewController class]])
+        if ([segue.destinationViewController isKindOfClass:[DetailTaskViewController class]])
         {
             DetailTaskTableViewController *destinationVC = segue.destinationViewController;
             destinationVC.task = [sharedManager savedTasks][sender.row];
@@ -70,12 +73,13 @@
                                                             selector:@selector(updateGui)
                                                             userInfo:nil
                                                              repeats:YES];
+    NSLog(@"timer started %@",updateUITimer);
 }
 
 - (void)styleCreateTaskButton
 {
     [[self.createTaskButton layer] setBorderWidth:0.5];
-    [[self.createTaskButton layer] setBorderColor:[[UIColor greenColor]CGColor]];
+    [[self.createTaskButton layer] setBorderColor:[[UIColor colorWithRed:0/255.0 green:180/255.0 blue:64/255.0 alpha:1.0]CGColor]];
     [[self.createTaskButton layer] setCornerRadius:5];
 }
 

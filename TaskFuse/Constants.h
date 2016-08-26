@@ -10,5 +10,8 @@
 #define Constants_h
 
 #define BACKGROUND_COLOUR [UIColor colorWithRed:38/255.0 green:41/255.0 blue:49/255.0 alpha:1.0]
+#define GREEN_COLOR [UIColor colorWithRed:0/255.0 green:128/255.0 blue:64/255.0 alpha:1.0]
+
+
 
 #endif /* Constants_h */

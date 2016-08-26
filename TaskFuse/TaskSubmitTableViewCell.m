@@ -23,6 +23,10 @@
 {
     [super awakeFromNib];
     // Initialization code
+    
+    [[self.taskSubmitButton layer] setBorderWidth:0.5];
+    [[self.taskSubmitButton layer] setBorderColor:[[UIColor greenColor]CGColor]];
+    [[self.taskSubmitButton layer] setCornerRadius:5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

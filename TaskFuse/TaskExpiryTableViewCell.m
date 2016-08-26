@@ -37,7 +37,7 @@
 {
     
     NSLog(@"is selected");
-    _segmentSelected =[self.taskExpirySegmentedControl selectedSegmentIndex];
+    _segmentSelected =(int)[self.taskExpirySegmentedControl selectedSegmentIndex];
     NSLog(@"returning %d", _segmentSelected);
     
     return _segmentSelected;
