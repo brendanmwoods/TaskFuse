@@ -10,6 +10,10 @@
 
 @interface TaskExpiryTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UISlider *frequencySlider;
+@property (weak, nonatomic) IBOutlet UITextField *taskFrequencyTextField;
+
 @property (nonatomic,assign)int segmentSelected;
+
 
 @end

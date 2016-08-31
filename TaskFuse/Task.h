@@ -13,7 +13,11 @@
 @property (nonatomic, strong)NSString *taskTitle;
 @property (nonatomic, strong)NSDate *startDate;
 @property (nonatomic, strong)NSDate *expiryDate;
+@property (nonatomic, strong)NSNumber *frequency;
 
-- (instancetype)initWithTitle:(NSString *)taskTitle startDate:(NSDate *)start expiryDate:(NSDate*)expiry;
+- (instancetype)initWithTitle:(NSString *)taskTitle
+                    startDate:(NSDate *)start
+                   expiryDate:(NSDate*)expiry
+                    frequency:(NSNumber *)frequency;
 
 @end

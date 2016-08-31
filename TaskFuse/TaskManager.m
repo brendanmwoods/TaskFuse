@@ -29,6 +29,8 @@ static NSString * const TASK_ENTITY_NAME = @"Task";
     NSManagedObjectContext *context = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]initWithEntityName:TASK_ENTITY_NAME];
     _savedTasks = [[context executeFetchRequest:fetchRequest error:nil]mutableCopy];
+    
+    //TODO: these should be turned in to Task objects before being returned.
     return _savedTasks;
 }
 
@@ -52,6 +54,7 @@ static NSString * const TASK_ENTITY_NAME = @"Task";
     [newTask setValue:task.taskTitle forKey:@"title"];
     [newTask setValue:task.startDate forKey:@"startDate"];
     [newTask setValue:task.expiryDate forKey:@"expiryDate"];
+    [newTask setValue:task.frequency forKey:@"frequency"];
     
     NSError *error = nil;
     

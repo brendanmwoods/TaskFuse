@@ -51,17 +51,13 @@
     return prettyDate;
 }
 
-int count = 1;
 + (NSMutableArray *)calculateCountdownValues:(NSDate *)expiry
 {
-    NSLog(@"run %d",count);
-    count++;
     NSTimeInterval secondsRemainingDouble = [expiry timeIntervalSinceNow];
     NSMutableArray *daysHoursMinutesRemaining = [[NSMutableArray alloc]init];
     
     if (secondsRemainingDouble < 0)
     {
-        NSLog(@"seconds remaining %f",secondsRemainingDouble);
         return nil;
     }
     int secondsRemaining = secondsRemainingDouble;

@@ -11,15 +11,15 @@
 @interface TaskTitleTableViewCell()
 
 #pragma mark - IBOutlets
+
 @property (weak, nonatomic) IBOutlet UITextField *taskTitleTextField;
 
 @end
 
-
-
 @implementation TaskTitleTableViewCell
 
 #pragma mark - Lifecycle
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -31,6 +31,7 @@
 }
 
 #pragma mark - public
+
 - (NSString *)title
 {
     return self.taskTitleTextField.text;

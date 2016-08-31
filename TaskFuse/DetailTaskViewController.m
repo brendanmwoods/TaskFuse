@@ -9,6 +9,7 @@
 #import "DetailTaskViewController.h"
 #import "DetailTaskTitleTableViewCell.h"
 #import "Constants.h"
+#import "CreateTaskViewController.h"
 
 @interface DetailTaskViewController ()
 
@@ -50,6 +51,18 @@
     [[self.taskPerformedButton layer] setBorderWidth: 0.5];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"editSegue"])
+    {
+        if ([segue.destinationViewController isKindOfClass:[CreateTaskViewController class]])
+        {
+            CreateTaskViewController *destinationVC = segue.destinationViewController;
+            [destinationVC setIsEditing:YES];
+        }
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -64,7 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    UITableViewCell *defaultCell = [[UITableViewCell alloc]init];
     DetailTaskTitleTableViewCell *myCell;
     
     switch (indexPath.section)
@@ -75,11 +88,10 @@
             [myCell setTitle:[self.task valueForKey:@"title"]];
             return myCell;
         default:
-            break;
+            return defaultCell;
     }
     
-    NSLog(@"SENDING CELL");
-    return cell;
+    return defaultCell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -94,6 +106,5 @@
         return @"";
     }
 }
-#pragma mark - UITableViewDelegate
 
 @end

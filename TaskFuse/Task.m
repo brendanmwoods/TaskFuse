@@ -19,7 +19,10 @@
 
 #pragma mark - Public
 
-- (instancetype)initWithTitle:(NSString *)taskTitle startDate:(NSDate *)start expiryDate:(NSDate *)expiry
+- (instancetype)initWithTitle:(NSString *)taskTitle
+                    startDate:(NSDate *)start
+                   expiryDate:(NSDate *)expiry
+                    frequency:(NSNumber *)frequency
 {
     self = [super init];
     
@@ -28,6 +31,7 @@
         _taskTitle = taskTitle;
         _startDate = start;
         _expiryDate = expiry;
+        _frequency = frequency;
     }
     return self;
 }

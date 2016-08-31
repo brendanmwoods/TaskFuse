@@ -57,13 +57,13 @@ static int const SUBMIT_BUTTON_SECTION = 2;
     
     
     //create a Task with the current details
-    Task *task = [[Task alloc]initWithTitle:self.taskTitle startDate:now expiryDate:expiry];
+    //Task *task = [[Task alloc]initWithTitle:self.taskTitle startDate:now expiryDate:expiry];
     
     
     
     TaskManager *sharedTaskManager = [TaskManager sharedTaskManager];
     //[sharedTaskManager addTaskWithTitle:[self taskTitle]];
-    [sharedTaskManager addTask:task];
+    //[sharedTaskManager addTask:task];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

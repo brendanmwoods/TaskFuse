@@ -290,7 +290,7 @@
                     <navigationItem key="navigationItem" title="Title" id="JgY-Gc-XWJ">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="ghW-RR-aeB">
                             <connections>
-                                <segue destination="DX9-av-Wqi" kind="show" id="zo3-ri-kYw"/>
+                                <segue destination="DX9-av-Wqi" kind="show" identifier="editSegue" id="zo3-ri-kYw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -356,7 +356,7 @@
                                     <constraint firstAttribute="bottom" secondItem="7PG-Wx-Uy6" secondAttribute="bottom" constant="10" id="ijQ-Bd-OQn"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fA8-CI-wVX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fA8-CI-wVX">
                                 <rect key="frame" x="0.0" y="64" width="600" height="461"/>
                                 <color key="backgroundColor" red="0.14770584049999999" green="0.15921748290000001" blue="0.19138029140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -389,30 +389,45 @@
                                             <outlet property="taskTitleTextField" destination="6kj-Si-4CG" id="rd5-NL-qqO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskFrequencyCell" rowHeight="132" id="7tw-eC-rI0" customClass="TaskExpiryTableViewCell">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="132"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskFrequencyCell" rowHeight="152" id="7tw-eC-rI0" customClass="TaskExpiryTableViewCell">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7tw-eC-rI0" id="8TN-1d-1bS">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Onx-3H-brs">
-                                                    <rect key="frame" x="16" y="8" width="568" height="115"/>
+                                                    <rect key="frame" x="16" y="8" width="568" height="135"/>
                                                     <subviews>
-                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="u6P-ap-zpk">
-                                                            <rect key="frame" x="-2" y="0.0" width="572" height="41"/>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-f2-MVN">
+                                                            <rect key="frame" x="0.0" y="0.0" width="568" height="27"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="p4L-hz-6k6"/>
+                                                                <constraint firstAttribute="height" constant="27" id="Bb9-uZ-PjQ"/>
                                                             </constraints>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                        </textField>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="u6P-ap-zpk">
+                                                            <rect key="frame" x="-2" y="37" width="572" height="31"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="p4L-hz-6k6"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <action selector="frequencySliderChanged:" destination="7tw-eC-rI0" eventType="valueChanged" id="5pu-0x-iL2"/>
+                                                            </connections>
                                                         </slider>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Per" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-ai-Kyz">
-                                                            <rect key="frame" x="252" y="50" width="65" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Times Per:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfk-ai-Kyz">
+                                                            <rect key="frame" x="244" y="77" width="81" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lks-hh-d3T">
-                                                            <rect key="frame" x="0.0" y="80" width="568" height="36"/>
+                                                            <rect key="frame" x="0.0" y="107" width="568" height="29"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="35" id="hLd-zV-Sp0"/>
+                                                            </constraints>
                                                             <segments>
                                                                 <segment title="Day"/>
                                                                 <segment title="Week"/>
@@ -420,12 +435,22 @@
                                                                 <segment title="Year"/>
                                                             </segments>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="hLd-zV-Sp0"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <connections>
+                                                                <action selector="expirySegmentChanged:" destination="7tw-eC-rI0" eventType="valueChanged" id="uvQ-8y-9d0"/>
+                                                            </connections>
                                                         </segmentedControl>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="u6P-ap-zpk" secondAttribute="trailing" id="0bw-ZO-oaq"/>
                                                         <constraint firstAttribute="trailing" secondItem="lks-hh-d3T" secondAttribute="trailing" id="2Mi-jq-V0a"/>
                                                         <constraint firstItem="lks-hh-d3T" firstAttribute="leading" secondItem="Onx-3H-brs" secondAttribute="leading" id="YCf-J5-nTT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Co2-f2-MVN" secondAttribute="trailing" id="nYT-xX-nHT"/>
+                                                        <constraint firstItem="Co2-f2-MVN" firstAttribute="leading" secondItem="Onx-3H-brs" secondAttribute="leading" id="uKB-jB-U8v"/>
                                                         <constraint firstItem="u6P-ap-zpk" firstAttribute="leading" secondItem="Onx-3H-brs" secondAttribute="leading" id="uWF-7Q-XxP"/>
                                                     </constraints>
                                                 </stackView>
@@ -439,7 +464,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14770584049999999" green="0.15921748290000001" blue="0.19138029140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="frequencySlider" destination="u6P-ap-zpk" id="t4v-oP-reW"/>
                                             <outlet property="taskExpirySegmentedControl" destination="lks-hh-d3T" id="GZl-Kl-eTE"/>
+                                            <outlet property="taskFrequencyTextField" destination="Co2-f2-MVN" id="Aj4-yC-ey2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
