@@ -12,7 +12,7 @@
 
 #pragma mark - Properties
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *taskExpirySegmentedControl;
+
 
 
 @end

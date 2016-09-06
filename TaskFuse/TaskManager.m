@@ -40,7 +40,6 @@ static NSString * const TASK_ENTITY_NAME = @"Task";
     
     [object setValue:task.taskTitle forKey:@"title"];
     [object setValue:task.startDate forKey:@"startDate"];
-    [object setValue:task.expiryDate forKey:@"expiryDate"];
     [object setValue:task.frequency forKey:@"frequency"];
     
     NSError *error = nil;

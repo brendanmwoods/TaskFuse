@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UISlider *frequencySlider;
 @property (weak, nonatomic) IBOutlet UITextField *taskFrequencyTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *taskExpirySegmentedControl;
 
 @property (nonatomic,assign)int segmentSelected;
 

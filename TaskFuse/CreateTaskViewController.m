@@ -43,6 +43,16 @@
     [self styleSaveButton];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    if (isEditing)
+    {
+        [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -50,6 +60,10 @@
     if (isEditing)
     {
         [self populateFieldsWithTaskBeingEdited];
+        
+        NSIndexPath *frequencyIndex = [NSIndexPath indexPathForRow:0 inSection:1];
+        TaskExpiryTableViewCell *frequencyCell = [self.tableView cellForRowAtIndexPath:frequencyIndex];
+        frequencyCell.taskExpirySegmentedControl.enabled = NO;
     }
 }
 
@@ -59,7 +73,13 @@
 {
     if (isEditing)
     {
-        
+        [self deleteTask];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    else
+    {
+        [self cancelTask];
     }
 }
 
@@ -92,12 +112,12 @@
 
 - (void)deleteTask
 {
-    
+    [[TaskManager sharedTaskManager]deleteTask:self.taskBeingEdited];
 }
 
 - (void)cancelTask
 {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)updateTask
@@ -111,6 +131,7 @@
 {
     Task *task = [self taskFromInputFields];
     [[TaskManager sharedTaskManager]addTask:task];
+    NSLog(@"%@", task.frequency);
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -119,8 +140,16 @@
     NSIndexPath *titleIndex = [NSIndexPath indexPathForRow:0 inSection:0];
     TaskTitleTableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titleIndex];
     titleCell.taskTitleTextField.text = [[self taskBeingEdited]valueForKey:@"title"];
+    
+    NSIndexPath *frequencyIndex = [NSIndexPath indexPathForRow:0 inSection:1];
+    TaskExpiryTableViewCell *frequencyCell = [self.tableView cellForRowAtIndexPath:frequencyIndex];
+    NSNumber *frequency = [self.taskBeingEdited valueForKey:@"frequency"];
+    frequencyCell.taskFrequencyTextField.text = [NSString stringWithFormat:@"%@",frequency];
+    
+    [UIView animateWithDuration:0.75 animations:^{
+       [frequencyCell.frequencySlider setValue:[frequency intValue] animated:YES];
+    }];
 }
-
 - (Task *)taskFromInputFields
 {
     //WE NEED DATA VALIDATION HERE
@@ -159,11 +188,6 @@
     [[self.saveButton layer] setBorderColor:[[UIColor colorWithRed:0/255.0 green:180/255.0 blue:64/255.0 alpha:1.0] CGColor]];
     [[self.saveButton layer] setCornerRadius: 5.0];
     [[self.saveButton layer] setBorderWidth: 0.5];
-}
-
-- (void)loadAllValuesForEditing
-{
-    
 }
 
 #pragma mark - UITableViewDataSource
