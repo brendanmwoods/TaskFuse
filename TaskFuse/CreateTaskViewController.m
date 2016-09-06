@@ -35,15 +35,21 @@
 
 #pragma mark - Lifecycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.title = isEditing ? @"Edit Task" : @"New Task";
     [self styleDeleteButton];
     [self styleSaveButton];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
     
     if (isEditing)
     {
-        
+        [self populateFieldsWithTaskBeingEdited];
     }
 }
 
@@ -51,10 +57,71 @@
 
 - (IBAction)deleteButtonPressed:(UIButton *)sender
 {
-    
+    if (isEditing)
+    {
+        
+    }
 }
 
 - (IBAction)saveButtonPressed:(id)sender
+{
+    if(isEditing)
+    {
+        [self updateTask];
+    }
+    
+    else
+    {
+        [self saveNewTask];
+    }
+}
+
+#pragma mark - Public
+
+- (void)setIsEditing:(BOOL)isItEditing
+{
+    isEditing = isItEditing;
+}
+
+- (BOOL)isEditing
+{
+    return isEditing;
+}
+
+#pragma mark - Private
+
+- (void)deleteTask
+{
+    
+}
+
+- (void)cancelTask
+{
+    
+}
+
+- (void)updateTask
+{
+    Task *task = [self taskFromInputFields];
+    [[TaskManager sharedTaskManager]updateSavedTask:self.taskBeingEdited withNewTaskData:task];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)saveNewTask
+{
+    Task *task = [self taskFromInputFields];
+    [[TaskManager sharedTaskManager]addTask:task];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)populateFieldsWithTaskBeingEdited
+{
+    NSIndexPath *titleIndex = [NSIndexPath indexPathForRow:0 inSection:0];
+    TaskTitleTableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titleIndex];
+    titleCell.taskTitleTextField.text = [[self taskBeingEdited]valueForKey:@"title"];
+}
+
+- (Task *)taskFromInputFields
 {
     //WE NEED DATA VALIDATION HERE
     
@@ -71,30 +138,14 @@
     TaskExpiryTableViewCell *frequencyCell = [self.tableView cellForRowAtIndexPath:frequencyIndex];
     ExpiryDurations duration = frequencyCell.segmentSelected;
     expiry = [DateHelper expiryFromDate:now afterDuration:duration];
-    frequency = @([frequencyCell.taskFrequencyTextField.text intValue]); 
+    frequency = @([frequencyCell.taskFrequencyTextField.text intValue]);
     
     Task *task = [[Task alloc]initWithTitle:title
                                   startDate:now
                                  expiryDate:expiry
                                   frequency:frequency];
-    
-    [[TaskManager sharedTaskManager]addTask:task];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    return task;
 }
-
-#pragma mark - Public
-
-- (void)setIsEditing:(BOOL)isItEditing
-{
-    isEditing = isItEditing;
-}
-
-- (BOOL)isEditing
-{
-    return isEditing;
-}
-
-#pragma mark - Private
 
 - (void)styleSaveButton
 {

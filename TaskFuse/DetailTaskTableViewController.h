@@ -11,6 +11,6 @@
 
 @interface DetailTaskTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSManagedObject *task;
+@property (nonatomic,strong) NSManagedObject *task;
 
 @end

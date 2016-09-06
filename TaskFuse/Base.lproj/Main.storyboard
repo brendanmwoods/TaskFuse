@@ -386,7 +386,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.14770584049999999" green="0.15921748290000001" blue="0.19138029140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="taskTitleTextField" destination="6kj-Si-4CG" id="rd5-NL-qqO"/>
+                                            <outlet property="taskTitleTextField" destination="6kj-Si-4CG" id="SnW-pE-5kq"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskFrequencyCell" rowHeight="152" id="7tw-eC-rI0" customClass="TaskExpiryTableViewCell">

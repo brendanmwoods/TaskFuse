@@ -20,5 +20,6 @@
 
 - (void)deleteTask:(NSManagedObject *)task;
 - (void)addTask:(Task *)task;
+- (void)updateSavedTask:(NSManagedObject *)object withNewTaskData:(Task *)task;
 
 @end

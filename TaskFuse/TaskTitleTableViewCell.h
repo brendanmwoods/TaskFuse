@@ -10,6 +10,9 @@
 
 @interface TaskTitleTableViewCell : UITableViewCell
 
+
 @property (strong, nonatomic)NSString *title;
+
+@property (weak, nonatomic) IBOutlet UITextField *taskTitleTextField;
 
 @end

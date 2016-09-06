@@ -34,6 +34,28 @@ static NSString * const TASK_ENTITY_NAME = @"Task";
     return _savedTasks;
 }
 
+- (void)updateSavedTask:(NSManagedObject *)object withNewTaskData:(Task *)task
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    [object setValue:task.taskTitle forKey:@"title"];
+    [object setValue:task.startDate forKey:@"startDate"];
+    [object setValue:task.expiryDate forKey:@"expiryDate"];
+    [object setValue:task.frequency forKey:@"frequency"];
+    
+    NSError *error = nil;
+    
+    if (![context save:&error])
+    {
+        NSLog(@"cannot save, with error %@ , %@", error,[error localizedDescription]);
+    }
+    
+    else
+    {
+        NSLog(@"should be saved correctly now");
+    }
+}
+
 + (TaskManager *)sharedTaskManager //singleton task manager
 {
     static TaskManager *sharedTaskManager = nil;

@@ -12,7 +12,7 @@
 
 #pragma mark - IBOutlets
 
-@property (weak, nonatomic) IBOutlet UITextField *taskTitleTextField;
+
 
 @end
 

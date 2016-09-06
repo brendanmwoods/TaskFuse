@@ -58,6 +58,7 @@
         if ([segue.destinationViewController isKindOfClass:[CreateTaskViewController class]])
         {
             CreateTaskViewController *destinationVC = segue.destinationViewController;
+            destinationVC.taskBeingEdited = self.task;
             [destinationVC setIsEditing:YES];
         }
     }

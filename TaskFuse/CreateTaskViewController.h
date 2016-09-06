@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "Task.h"
 
 @interface CreateTaskViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic,strong) Task *taskBeingEdited;
+//@property (nonatomic,strong) Task *taskBeingEdited;
+@property (strong, nonatomic) NSManagedObject *taskBeingEdited;
 
 - (void)setIsEditing:(BOOL)isItEditing;
 - (BOOL)isEditing;
